@@ -1,0 +1,39 @@
+#!/usr/bin/make -f
+
+override_dh_auto_install:
+
+build:
+	make
+
+binary: binary-indep binary-arch
+
+binary-indep:
+	# nothing to be done
+
+binary-arch:
+	# creating directories
+	mkdir -p debian/beceem-cscm/DEBIAN
+	mkdir -p debian/beceem-cscm/etc/beceem-cscm
+	mkdir -p debian/beceem-cscm/lib
+	mkdir -p debian/beceem-cscm/usr/bin
+	# copying files
+	cp -f beceem-cscm.conf debian/beceem-cscm/etc/beceem-cscm/
+	cp -f build/libeap_supplicant.so debian/beceem-cscm/lib
+	cp -f build/libengine_beceem.so debian/beceem-cscm/lib
+	cp -f build/libxvi020.so debian/beceem-cscm/lib
+	cp -f build/wimaxc debian/beceem-cscm/usr/bin
+	cp -f build/wimaxd debian/beceem-cscm/usr/bin
+	# run debuild commands
+	dh_installinit
+	dh_strip
+	dh_lintian
+	dh_fixperms
+	dh_installdeb
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+clean:
+	rm -rf debian/beceem-cscm
+	make clean
+
+.PHONY: clean build binary binary-arch binary-indep

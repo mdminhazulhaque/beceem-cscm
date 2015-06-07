@@ -1,0 +1,14 @@
+Source: beceem-cscm
+Section: net
+Priority: optional
+Maintainer: Muhammad Minhazul Haque <mdminhazulhaque@gmail.com>
+Build-Depends: debhelper (>= 8.0.0), libssl-dev (>= 1.0.0), wpasupplicant (>= 0.7.3)
+Standards-Version: 3.9.3
+Homepage: http://wimanager.minhazulhaque.com
+
+Package: beceem-cscm
+Architecture: i386
+Depends: libssl1.0.0 (>= 1.0.0) ,libc6 (>= 2.15)
+Description: beceem-cscm for Ubuntu
+ A collection of necessary libraries and binary files to control
+ WiMAX devices working with `bcm_wimax` module.
